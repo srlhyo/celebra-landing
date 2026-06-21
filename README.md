@@ -31,8 +31,9 @@ src/
 
 ## Notas importantes antes de publicar
 
-- **Imagens**: a secção "A solução" já usa 3 imagens reais geradas por IA (`src/assets/img/`) — mesa de evento, ramo de flores e canapés. Se quiseres trocar por outras, basta substituir os ficheiros `.jpg` na mesma pasta com o mesmo nome, ou actualizar os imports em `Solucao.jsx`.
+- **Imagens de produto**: a secção "A solução" e "Como funciona" usam 3 screenshots reais da interface (`src/assets/img/produto-*.jpg`), geradas a partir da app real ("Do Luxo à Mesa") com a marca trocada para Celebra via IA generativa. Se regenerares novas versões, mantém os mesmos nomes de ficheiro ou actualiza os imports em `Solucao.jsx` e `ComoFunciona.jsx`.
+- **Hero**: o cartão 3D agora desenha a face do convite num canvas 2D (monograma, nome da marca, linhas decorativas) e aplica-a como textura — fica nítido e on-brand, em vez de barras genéricas. As partículas estão em duas camadas (ambiente + concentradas junto ao cartão).
+- **"Como funciona"**: passou a ser interactivo — cada passo é clicável e troca a imagem de preview à direita, usando as mesmas screenshots de produto.
+- **"O dia a dia sem isto"**: ganhou uma colagem visual (mensagens, notas, abas dispersas, inclinadas) ao lado da lista de sintomas, e uma frase de transição que liga à secção seguinte.
 - **Preços**: os valores do plano Essencial (29€/mês) são ilustrativos, como indicado no briefing — revê antes de publicar.
 - **Domínio/marca "Celebra"**: por confirmar disponibilidade.
-- **3D no hero**: corre em desktop sem `prefers-reduced-motion`; em mobile ou com motion reduzido, mostra automaticamente uma versão estática em CSS (`InviteCardStatic.jsx`) — sem custo de WebGL.
-# celebra-landing

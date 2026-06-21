@@ -3,7 +3,6 @@ import Hero from './sections/Hero';
 import Problema from './sections/Problema';
 import Solucao from './sections/Solucao';
 import ComoFunciona from './sections/ComoFunciona';
-import Funcionalidades from './sections/Funcionalidades';
 import ProvaSocial from './sections/ProvaSocial';
 import Precos from './sections/Precos';
 import CTAFinal from './sections/CTAFinal';
@@ -21,7 +20,6 @@ function App() {
         <Solucao />
         <SectionDivider />
         <ComoFunciona />
-        <Funcionalidades />
         <ProvaSocial />
         <Precos />
         <CTAFinal />

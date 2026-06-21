@@ -69,13 +69,18 @@ export default function Precos() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
-              className={`relative rounded-2xl p-8 border flex flex-col ${
+              whileHover={{ y: -4 }}
+              className={`relative rounded-2xl p-8 border flex flex-col transition-shadow duration-300 ${
                 plano.activo
-                  ? 'border-dourado bg-gradient-to-b from-dourado/10 to-transparent'
-                  : 'border-marfim/15'
+                  ? 'border-dourado bg-gradient-to-b from-dourado/10 to-transparent shadow-xl shadow-dourado/10 hover:shadow-dourado/20'
+                  : 'border-marfim/15 hover:border-marfim/25'
               }`}
             >
-              {!plano.activo && (
+              {plano.activo ? (
+                <span className="absolute top-6 right-6 font-mono text-[10px] uppercase tracking-wider text-carvao bg-dourado rounded-full px-2.5 py-1">
+                  Disponível agora
+                </span>
+              ) : (
                 <span className="absolute top-6 right-6 font-mono text-[10px] uppercase tracking-wider text-marfim/40 border border-marfim/20 rounded-full px-2.5 py-1">
                   Em breve
                 </span>

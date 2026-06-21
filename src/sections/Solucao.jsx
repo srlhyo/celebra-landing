@@ -1,29 +1,50 @@
 import { motion } from 'framer-motion';
 import Eyebrow from '../components/Eyebrow';
-import mesaEvento from '../assets/img/mesa-evento.jpg';
-import ramoFlores from '../assets/img/ramo-flores.jpg';
-import canapes from '../assets/img/canapes.jpg';
+import produtoPainel from '../assets/img/produto-painel.jpg';
+import produtoQuestionario from '../assets/img/produto-questionario.jpg';
+import produtoDashboard from '../assets/img/produto-dashboard.jpg';
 
 const funcionalidades = [
   {
     titulo: 'Tipos de evento à medida',
     texto: 'Cria Casamento, Batizado, Aniversário, ou o que o teu negócio precisar — campos e perguntas próprios, sem código.',
-    imagem: mesaEvento,
-    alt: 'Mesa de evento de luxo com candeeiros de cristal e centros de mesa florais',
+    imagem: produtoPainel,
+    alt: 'Painel do Celebra com a lista de clientes e os estados de cada evento',
+    orientacao: 'landscape',
   },
   {
     titulo: 'Convites com a tua marca',
-    texto: 'Cada cliente recebe um link único, com as tuas cores, o teu logótipo e o teu tom de voz.',
-    imagem: ramoFlores,
-    alt: 'Ramo de rosas em tons creme e rosa sobre fundo dourado desfocado',
+    texto: 'Cada cliente recebe um link único, com as tuas cores, o teu logótipo e o teu tom de voz — o questionário sente-se como uma extensão do teu negócio, não de uma ferramenta genérica.',
+    imagem: produtoQuestionario,
+    alt: 'Questionário multi-passos do Celebra aberto num telemóvel, com a marca do negócio',
+    orientacao: 'portrait',
   },
   {
     titulo: 'Painel com tudo à vista',
     texto: 'Estado de cada evento, dashboard com estatísticas e briefing pronto a imprimir para a equipa.',
-    imagem: canapes,
-    alt: 'Mesa de canapés e aperitivos organizados em camadas, prontos a servir',
+    imagem: produtoDashboard,
+    alt: 'Dashboard do Celebra com estatísticas de eventos, próximo evento e gráficos',
+    orientacao: 'landscape',
   },
 ];
+
+function ProductShot({ imagem, alt, orientacao }) {
+  return (
+    <div className="relative">
+      {/* Glow dourado ambiente para a imagem "saltar" do fundo escuro */}
+      <div className="absolute -inset-6 bg-dourado/10 blur-3xl rounded-full pointer-events-none" />
+
+      <div
+        className={`relative overflow-hidden rounded-xl border border-dourado/25 shadow-2xl shadow-black/60 ${
+          orientacao === 'portrait' ? 'aspect-[490/1000] max-w-xs mx-auto' : 'aspect-[1024/512]'
+        }`}
+        style={{ boxShadow: '0 30px 60px -20px rgba(0,0,0,0.7), 0 0 40px -10px rgba(201,168,76,0.15)' }}
+      >
+        <img src={imagem} alt={alt} loading="lazy" className="w-full h-full object-cover" />
+      </div>
+    </div>
+  );
+}
 
 export default function Solucao() {
   return (
@@ -48,7 +69,7 @@ export default function Solucao() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-100px' }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className={`grid lg:grid-cols-2 gap-10 items-center ${
+              className={`grid lg:grid-cols-2 gap-12 items-center ${
                 i % 2 === 1 ? 'lg:[&>*:first-child]:order-2' : ''
               }`}
             >
@@ -57,14 +78,7 @@ export default function Solucao() {
                 <h3 className="font-display text-3xl mt-3 mb-4">{f.titulo}</h3>
                 <p className="text-marfim/70 text-lg leading-relaxed max-w-md">{f.texto}</p>
               </div>
-              <div className="overflow-hidden rounded-2xl aspect-[4/3] lg:aspect-[16/11] border border-dourado/15">
-                <img
-                  src={f.imagem}
-                  alt={f.alt}
-                  loading="lazy"
-                  className="w-full h-full object-cover"
-                />
-              </div>
+              <ProductShot imagem={f.imagem} alt={f.alt} orientacao={f.orientacao} />
             </motion.div>
           ))}
         </div>
