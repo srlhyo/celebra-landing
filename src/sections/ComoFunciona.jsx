@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Eyebrow from '../components/Eyebrow';
-import produtoPainel from '../assets/img/produto-painel.jpg';
+import Lightbox from '../components/Lightbox';
+import produtoTipoEvento from '../assets/img/produto-tipo-evento.jpg';
+import produtoConviteAcesso from '../assets/img/produto-convite-acesso.jpg';
 import produtoQuestionario from '../assets/img/produto-questionario.jpg';
 import produtoDashboard from '../assets/img/produto-dashboard.jpg';
 
@@ -9,23 +11,23 @@ const passos = [
   {
     numero: '01',
     titulo: 'Cria o tipo de evento',
-    texto: 'Define os passos e as perguntas do questionário — casamento, batizado, ou o que precisares.',
-    imagem: produtoPainel,
-    alt: 'Painel do Celebra a mostrar a lista de tipos de evento e clientes',
+    texto: 'Define os passos e as perguntas do questionário — casamento, batizado, ou o que precisares. Duplica um tipo existente ou começa em branco.',
+    imagem: produtoTipoEvento,
+    alt: 'Modal do Celebra para criar um novo tipo de evento, duplicando um existente ou começando em branco',
   },
   {
     numero: '02',
     titulo: 'Envia o convite',
-    texto: 'Cada cliente recebe um link único, com a tua marca, pronto a abrir no telemóvel.',
-    imagem: produtoQuestionario,
-    alt: 'Convite do Celebra aberto num telemóvel, com a marca do negócio',
+    texto: 'Cada cliente recebe um link único, com a tua marca, e entra com um código de acesso pessoal.',
+    imagem: produtoConviteAcesso,
+    alt: 'Ecrã de entrada do questionário Celebra com campo de código de acesso',
   },
   {
     numero: '03',
     titulo: 'O cliente preenche',
     texto: 'Um questionário por etapas, bonito e simples, sem fricção.',
     imagem: produtoQuestionario,
-    alt: 'Questionário multi-passos do Celebra a ser preenchido',
+    alt: 'Questionário multi-passos do Celebra a ser preenchido num telemóvel',
   },
   {
     numero: '04',
@@ -38,6 +40,7 @@ const passos = [
 
 export default function ComoFunciona() {
   const [activo, setActivo] = useState(0);
+  const [lightboxSrc, setLightboxSrc] = useState(null);
   const passo = passos[activo];
 
   return (
@@ -103,11 +106,14 @@ export default function ComoFunciona() {
             })}
           </div>
 
-          {/* Janela de preview com a imagem do passo activo */}
+          {/* Janela de preview com a imagem do passo activo — clicável para expandir */}
           <div className="relative h-[20rem] sm:h-[26rem] lg:h-[30rem]">
             <div className="absolute -inset-6 bg-dourado/10 blur-3xl rounded-full pointer-events-none" />
-            <div
-              className="relative h-full rounded-xl overflow-hidden border border-dourado/25"
+            <button
+              type="button"
+              onClick={() => setLightboxSrc(passo.imagem)}
+              aria-label={`Ver imagem ampliada: ${passo.alt}`}
+              className="group relative h-full w-full rounded-xl overflow-hidden border border-dourado/25 cursor-zoom-in"
               style={{ boxShadow: '0 30px 60px -20px rgba(0,0,0,0.7), 0 0 40px -10px rgba(201,168,76,0.15)' }}
             >
               <AnimatePresence mode="wait">
@@ -119,13 +125,22 @@ export default function ComoFunciona() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                 />
               </AnimatePresence>
-            </div>
+
+              {/* Indicação visual de que é clicável */}
+              <div className="absolute inset-0 bg-carvao/0 group-hover:bg-carvao/20 transition-colors duration-300 flex items-center justify-center">
+                <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-mono text-xs uppercase tracking-wider text-marfim bg-carvao/70 border border-dourado/40 rounded-full px-4 py-2">
+                  Ver ampliado
+                </span>
+              </div>
+            </button>
           </div>
         </div>
       </div>
+
+      <Lightbox src={lightboxSrc} alt={passo.alt} onClose={() => setLightboxSrc(null)} />
     </section>
   );
 }

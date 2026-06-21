@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Eyebrow from '../components/Eyebrow';
+import Lightbox from '../components/Lightbox';
 import produtoPainel from '../assets/img/produto-painel.jpg';
 import produtoQuestionario from '../assets/img/produto-questionario.jpg';
 import produtoDashboard from '../assets/img/produto-dashboard.jpg';
@@ -28,25 +30,46 @@ const funcionalidades = [
   },
 ];
 
-function ProductShot({ imagem, alt, orientacao }) {
+function ProductShot({ imagem, alt, orientacao, onExpand }) {
   return (
     <div className="relative">
       {/* Glow dourado ambiente para a imagem "saltar" do fundo escuro */}
       <div className="absolute -inset-6 bg-dourado/10 blur-3xl rounded-full pointer-events-none" />
 
-      <div
-        className={`relative overflow-hidden rounded-xl border border-dourado/25 shadow-2xl shadow-black/60 ${
+      <button
+        type="button"
+        onClick={onExpand}
+        aria-label={`Ver imagem ampliada: ${alt}`}
+        className={`group relative overflow-hidden rounded-xl border border-dourado/25 cursor-zoom-in w-full ${
           orientacao === 'portrait' ? 'aspect-[490/1000] max-w-xs mx-auto' : 'aspect-[1024/512]'
         }`}
         style={{ boxShadow: '0 30px 60px -20px rgba(0,0,0,0.7), 0 0 40px -10px rgba(201,168,76,0.15)' }}
       >
-        <img src={imagem} alt={alt} loading="lazy" className="w-full h-full object-cover" />
-      </div>
+        <img
+          src={imagem}
+          alt={alt}
+          loading="lazy"
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+        />
+        <div className="absolute inset-0 bg-carvao/0 group-hover:bg-carvao/20 transition-colors duration-300 flex items-center justify-center">
+          <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-mono text-xs uppercase tracking-wider text-marfim bg-carvao/70 border border-dourado/40 rounded-full px-4 py-2">
+            Ver ampliado
+          </span>
+        </div>
+      </button>
     </div>
   );
 }
 
 export default function Solucao() {
+  const [lightboxSrc, setLightboxSrc] = useState(null);
+  const [lightboxAlt, setLightboxAlt] = useState('');
+
+  const expandir = (imagem, alt) => {
+    setLightboxSrc(imagem);
+    setLightboxAlt(alt);
+  };
+
   return (
     <section id="solucao" className="px-6 sm:px-10 lg:px-20 py-28 lg:py-36 bg-carvao-suave">
       <div className="max-w-6xl mx-auto">
@@ -78,11 +101,18 @@ export default function Solucao() {
                 <h3 className="font-display text-3xl mt-3 mb-4">{f.titulo}</h3>
                 <p className="text-marfim/70 text-lg leading-relaxed max-w-md">{f.texto}</p>
               </div>
-              <ProductShot imagem={f.imagem} alt={f.alt} orientacao={f.orientacao} />
+              <ProductShot
+                imagem={f.imagem}
+                alt={f.alt}
+                orientacao={f.orientacao}
+                onExpand={() => expandir(f.imagem, f.alt)}
+              />
             </motion.div>
           ))}
         </div>
       </div>
+
+      <Lightbox src={lightboxSrc} alt={lightboxAlt} onClose={() => setLightboxSrc(null)} />
     </section>
   );
 }

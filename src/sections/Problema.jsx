@@ -7,8 +7,8 @@ const sintomas = [
     texto: 'O cliente preenche um Google Forms com a cara de outra empresa, não a tua.',
   },
   {
-    titulo: 'Informação dispersa',
-    texto: 'Medidas, gostos, horários e moradas espalhados entre WhatsApp, email e papel.',
+    titulo: 'PDFs a ir e voltar',
+    texto: 'Envias um formulário editável por email, o cliente devolve, e às vezes ainda há alterações a fazer até ao dia do evento.',
   },
   {
     titulo: 'Sem visão do conjunto',
@@ -25,7 +25,7 @@ const sintomas = [
 // e não só descrito em texto.
 const fragmentos = [
   { tipo: 'whatsapp', texto: 'Oi! Confirma a morada da quinta?', rot: -6, top: '4%', left: '2%' },
-  { tipo: 'nota', texto: 'paleta: dourado ou champanhe??', rot: 4, top: '40%', left: '0%' },
+  { tipo: 'pdf', texto: 'Formulario_Casamento_editavel_v4.pdf', rot: 4, top: '38%', left: '0%' },
   { tipo: 'aba', texto: 'Resposta_Formulário_v3_FINAL(2).pdf', rot: -3, top: '74%', left: '6%' },
   { tipo: 'whatsapp', texto: '12 pessoas têm restrição alimentar', rot: 5, top: '14%', left: '52%' },
   { tipo: 'nota', texto: 'falta confirmar horário do DJ', rot: -4, top: '54%', left: '58%' },
@@ -38,6 +38,7 @@ function Fragmento({ tipo, texto, rot, top, left }) {
     whatsapp: 'bg-[#DCF8C6] text-[#1A1A1A] rounded-2xl rounded-tl-sm font-body',
     nota: 'bg-[#FFF3B0] text-[#3D2F1A] font-body -rotate-1',
     aba: 'bg-marfim/95 text-sepia rounded-md border-t-2 border-dourado font-mono text-[11px]',
+    pdf: 'bg-[#3D2F1A] text-marfim/90 rounded-md border-l-4 border-[#C0392B] font-mono text-[11px] flex items-center gap-2',
   };
 
   return (
@@ -45,6 +46,7 @@ function Fragmento({ tipo, texto, rot, top, left }) {
       className={`${base} ${estilos[tipo]}`}
       style={{ top, left, transform: `rotate(${rot}deg)` }}
     >
+      {tipo === 'pdf' && <span className="text-[#C0392B] font-bold text-[13px]">PDF</span>}
       {texto}
     </div>
   );
