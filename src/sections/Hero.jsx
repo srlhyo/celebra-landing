@@ -39,7 +39,9 @@ export default function Hero() {
 
           <div className="mt-10 flex flex-wrap gap-4">
             <a
-              href="#comecar"
+              href="https://celebra-doluxoamesa.netlify.app/admin"
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-7 py-3.5 bg-dourado text-carvao font-medium rounded-full hover:bg-marfim transition-colors duration-300"
             >
               Começar gratuitamente

@@ -102,7 +102,9 @@ export default function Precos() {
               </ul>
 
               <a
-                href={plano.activo ? '#comecar' : undefined}
+                href={plano.activo ? 'https://celebra-doluxoamesa.netlify.app/admin' : undefined}
+                target={plano.activo ? '_blank' : undefined}
+                rel={plano.activo ? 'noopener noreferrer' : undefined}
                 aria-disabled={!plano.activo}
                 className={`mt-8 text-center py-3 rounded-full font-medium transition-colors duration-300 ${
                   plano.activo

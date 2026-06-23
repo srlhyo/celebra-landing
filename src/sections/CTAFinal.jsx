@@ -37,7 +37,9 @@ export default function CTAFinal() {
           className="mt-10"
         >
           <a
-            href="#"
+            href="https://dlm-app.netlify.app/admin"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-block px-9 py-4 bg-dourado text-carvao font-medium rounded-full hover:bg-marfim transition-colors duration-300 text-lg"
           >
             Começar gratuitamente

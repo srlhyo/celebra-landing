@@ -2,15 +2,15 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Eyebrow from '../components/Eyebrow';
 import Lightbox from '../components/Lightbox';
-import produtoPainel from '../assets/img/produto-painel.jpg';
+import produtoSolucaoTipos from '../assets/img/produto-solucao-tipos.jpg';
 import produtoQuestionario from '../assets/img/produto-questionario.jpg';
-import produtoDashboard from '../assets/img/produto-dashboard.jpg';
+import produtoSolucaoPainel from '../assets/img/produto-solucao-painel.jpg';
 
 const funcionalidades = [
   {
     titulo: 'Tipos de evento à medida',
     texto: 'Cria Casamento, Batizado, Aniversário, ou o que o teu negócio precisar — campos e perguntas próprios, sem código.',
-    imagem: produtoPainel,
+    imagem: produtoSolucaoTipos,
     alt: 'Painel do Celebra com a lista de clientes e os estados de cada evento',
     orientacao: 'landscape',
   },
@@ -24,7 +24,7 @@ const funcionalidades = [
   {
     titulo: 'Painel com tudo à vista',
     texto: 'Estado de cada evento, dashboard com estatísticas e briefing pronto a imprimir para a equipa.',
-    imagem: produtoDashboard,
+    imagem: produtoSolucaoPainel,
     alt: 'Dashboard do Celebra com estatísticas de eventos, próximo evento e gráficos',
     orientacao: 'landscape',
   },

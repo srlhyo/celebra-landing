@@ -31,7 +31,9 @@ export default function Header() {
         </nav>
 
         <a
-          href="#comecar"
+          href="https://celebra-doluxoamesa.netlify.app/admin"
+          target="_blank"
+          rel="noopener noreferrer"
           className="px-5 py-2.5 border border-dourado text-dourado rounded-full text-sm hover:bg-dourado hover:text-carvao transition-colors duration-300"
         >
           Começar
